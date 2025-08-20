@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Order History - Starlife</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="auth.js"></script>
+  <script>
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (!user) {
+    alert("⚠️ Please log in to continue.");
+    window.location.href = "login.html";
+  }
+</script>
+
+
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Starlife</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="order-history.html">Order History</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="history-container">
+    <h1>🧾 Your Order History</h1>
+    <div id="order-list"></div>
+  </main>
+
+  <script src="order-history.js"></script>
+</body>
+</html>

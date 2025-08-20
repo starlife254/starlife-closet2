@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Thank You - Starlife</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <main class="thank-you">
+    <h1>STARLIFE CLOSET </h1>
+
+    <div class="receipt">
+      <h2><U>Receipt</U></h2>
+      <p><strong>Name:</strong> <span id="customer-name"></span></p>
+      <p><strong>Email:</strong> <span id="customer-email"></span></p>
+      <p><strong>Phone:</strong> <span id="customer-phone"></span></p>
+      <p><strong>Address:</strong> <span id="customer-address"></span></p>
+      <p><strong>City:</strong> <span id="customer-city"></span></p>
+      <p><strong>County:</strong> <span id="customer-county"></span></p>
+      <hr>
+      <h3>Items:</h3>
+      <ul id="item-list"></ul>
+      <p><strong>Total:</strong> KSh <span id="order-total"></span></p>
+      <p><em>Date:</em> <span id="order-date"></span></p>
+
+      <button onclick="window.print()">🖨️ Print Receipt</button>
+      <button onclick="downloadReceipt()">📥 Download PDF</button>
+      <a href="index.html" class="btn">🏠 Back to Home</a>
+    </div>
+  </main>
+  <script src="js/thank-you.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+  function downloadReceipt() {
+    const element = document.querySelector('.receipt');
+    const options = {
+      margin:       0.5,
+      filename:     'starlife-receipt.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf().set(options).from(element).save();
+  }
+</script>
+
+</body>
+</html>

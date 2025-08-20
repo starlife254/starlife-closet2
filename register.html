@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register - Starlife</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <main class="auth-container">
+    <h1>Create Account</h1>
+    <form id="register-form">
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <div class="form-group">
+  <label for="password" ></label>
+  <div style="position: relative;">
+    <input type="password"  placeholder="password" id="password" required />
+    <button type="button" id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;">
+      👁️
+    </button>
+  </div>
+</div>
+
+      <button type="submit">Register</button>
+      <p>Already have an account? <a href="login.html">Login here</a></p>
+    </form>
+  </main>
+
+  <!-- ✅ EmailJS SDK v4 with type="module" -->
+<script type="module">
+ import emailjs from "https://cdn.skypack.dev/@emailjs/browser";
+
+
+
+  emailjs.init("LspaKKDYRU8KTVHvW"); // Your EmailJS Public Key
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("register-form");
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const code = Math.floor(100000 + Math.random() * 900000);
+      const time = new Date().toLocaleString("en-KE");
+
+      localStorage.setItem("pendingUser", JSON.stringify({
+        name, email, password, confirmationCode: code
+      }));
+
+      try {
+        await emailjs.send("service_ohgxkwb", "template_7ibihwd", {
+          to_name: name,
+          to_email: email,
+          code,
+          time
+        });
+
+        alert("✅ Confirmation code sent!");
+        window.location.href = "verify.html";
+      } catch (err) {
+        console.error("❌ EmailJS error:", err);
+        alert("❌ Failed to send confirmation code.");
+      }
+    });
+  });
+</script>
+
+<script>
+  document.getElementById("togglePassword").addEventListener("click", function () {
+  const passwordInput = document.getElementById("password");
+  const isHidden = passwordInput.type === "password";
+  passwordInput.type = isHidden ? "text" : "password";
+  this.textContent = isHidden ? "🙈" : "👁️";
+});
+
+</script>
+</body>
+</html>

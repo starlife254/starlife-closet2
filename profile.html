@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Profile - Starlife</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="auth.js"></script> <!-- Protect page -->
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Starlife</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="profile.html">My Profile</a></li>
+        <li id="auth-links"></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="profile-container">
+    <h1>👤 My Profile</h1>
+    <div id="user-info"></div>
+  <!-- Edit Profile Form -->
+    <details>
+      <summary>✏️ Edit Info</summary>
+      <form id="edit-profile-form">
+        <input type="text" id="edit-name" placeholder="Name" required />
+        <input type="email" id="edit-email" placeholder="Email" required disabled />
+        <input type="file" id="profile-image" accept="image/*" />
+        <button type="submit">Save Changes</button>
+      </form>
+    </details>
+
+    <!-- Change Password -->
+    <details>
+      <summary>🔐 Change Password</summary>
+      <form id="change-password-form">
+        <input type="password" id="new-password" placeholder="New Password" required />
+        <input type="password" id="confirm-password" placeholder="Confirm Password" required />
+        <button type="submit">Change Password</button>
+      </form>
+    </details>
+    <h2>📦 My Orders</h2>
+    <div id="order-list"></div>
+  </main>
+
+  <script src="profile.js"></script>
+
+
+
+</body>
+</html>
